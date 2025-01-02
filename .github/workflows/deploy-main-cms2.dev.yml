@@ -71,8 +71,8 @@ jobs:
           key: ${{ secrets.DEPLOY_KEY }}
 
           script: |
-            cd ${{ env.DIR }}
-            php artisan migrate:fresh --seed
+#            cd ${{ env.DIR }}
+            docker exec vt2 php artisan migrate:fresh --seed
 
           #            cd ${{ env.DIR }}
           #            /usr/local/php/cgi/8.2/bin/php composer.phar i --no-dev
@@ -91,10 +91,10 @@ jobs:
           key: ${{ secrets.DEPLOY_KEY }}
 
           script: |
-            cd ${{ env.DIR }}
-            npm i
-            npm run build
-            npx tailwindcss -i ./resources/css/app.css -o ./public/css/output.css
+#            cd ${{ env.DIR }}
+            docker exec vt2 npm i
+            docker exec vt2 npm run build
+            docker exec vt2 npx tailwindcss -i ./resources/css/app.css -o ./public/css/output.css
             
 
   sms_start:
