@@ -34,6 +34,9 @@ class Events extends Component
 			$is->orderBy('date', 'asc')->where('date', '>=', now());
 		}
 
+
+
+
 		$items = $is->with([
 			'photos',
 			'rewards' => function ($query) {
