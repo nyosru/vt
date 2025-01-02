@@ -1,4 +1,4 @@
-name: Deploy to cms2dev
+name: Deploy
 
 
 env:
@@ -6,16 +6,12 @@ env:
   VPS_USERNAME: root
   DIR: /home/vt2412
   GIT_BRANCH: origin/main
-#  TELEGA_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
-#  token: ${{ secrets.TELEGRAM_TOKEN }}
-#  DEPLOY_KEY:  ${{ secrets.DEPLOY_KEY }}
+
 
 on:
   push:
     branches:
       - main
-
-
 
 jobs:
 
@@ -60,32 +56,22 @@ jobs:
           host: ${{ env.VPS_IP }}
           username: ${{ env.VPS_USERNAME }}
           key: ${{ secrets.DEPLOY_KEY }}
-
           script: |
-#            /usr/local/php/cgi/8.2/bin/php composer.phar i --no-dev
 #            composer i --no-dev
             composer i
 
-#            /usr/local/php/cgi/8.2/bin/php artisan migrate
-          #            cd ${{ env.DIR }}
-          #            /usr/local/php/cgi/8.2/bin/php composer.phar i --no-dev
-
-
   deploy_composer_db:
     runs-on: ubuntu-latest
-    #    needs: deploy_composer_stop
     needs: deploy_composer
     steps:
       - uses: appleboy/ssh-action@master
         with:
-
           host: ${{ env.VPS_IP }}
           username: ${{ env.VPS_USERNAME }}
           key: ${{ secrets.DEPLOY_KEY }}
 
           script: |
             php artisan migrate:fresh --seed
-           
 
           #            cd ${{ env.DIR }}
           #            /usr/local/php/cgi/8.2/bin/php composer.phar i --no-dev
