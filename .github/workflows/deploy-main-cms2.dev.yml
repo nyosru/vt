@@ -26,9 +26,9 @@ jobs:
           username: ${{ env.VPS_USERNAME }}
           key: ${{ secrets.DEPLOY_KEY }}
           script: |
-                    git fetch --all
-                    git reset --hard ${{ env.GIT_BRANCH }}
-          #            cd ${{ env.DIR }}
+            cd ${{ env.DIR }}
+            git fetch --all
+            git reset --hard ${{ env.GIT_BRANCH }}
 
   #  deploy_composer_stop:
   #    runs-on: ubuntu-latest
