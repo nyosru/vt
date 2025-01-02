@@ -57,8 +57,7 @@ jobs:
           username: ${{ env.VPS_USERNAME }}
           key: ${{ secrets.DEPLOY_KEY }}
           script: |
-            cd ${{ env.DIR }}
-            composer i
+            docker exec vt2 composer i
 
   deploy_composer_db:
     runs-on: ubuntu-latest
