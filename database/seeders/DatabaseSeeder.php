@@ -26,6 +26,12 @@ class DatabaseSeeder extends Seeder
             'password' => '$2y$12$25kbkFWlIeYrx0wVr0S5R.vjKzJKuB.ne3euRWy7BEryM9suvKV2a',
         ]);
 
+        User::factory()->create([
+            'name' => 'Viktor',
+            'email' => '9292000001@mail.ru',
+            'password' => '$2y$12$.gVKRl3xcerDUI20F6ZXi..CKbq3XW9VrNbHFFjyRZCDiqoZf7pX6',
+        ]);
+
 		$this->call([
 			EventSeeder::class,
 			RewardSeeder::class,

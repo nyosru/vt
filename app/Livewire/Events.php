@@ -29,9 +29,9 @@ class Events extends Component
 
 		// Применяем фильтр
 		if ($this->filterDate == 'old') {
-			$is->where('date', '<', now());
+			$is->orderBy('date', 'desc')->where('date', '<', now());
 		} elseif ($this->filterDate == 'new') {
-			$is->where('date', '>=', now());
+			$is->orderBy('date', 'asc')->where('date', '>=', now());
 		}
 
 		$items = $is->with([
