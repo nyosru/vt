@@ -79,17 +79,13 @@ jobs:
     steps:
       - uses: appleboy/ssh-action@master
         with:
-
           host: ${{ env.VPS_IP }}
           username: ${{ env.VPS_USERNAME }}
           key: ${{ secrets.DEPLOY_KEY }}
-
           script: |
-#            cd ${{ env.DIR }}
             docker exec vt2 npm i
             docker exec vt2 npm run build
             docker exec vt2 npx tailwindcss -i ./resources/css/app.css -o ./public/css/output.css
-            
 
   sms_start:
     runs-on: ubuntu-latest
