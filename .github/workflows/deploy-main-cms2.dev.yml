@@ -6,9 +6,9 @@ env:
   VPS_USERNAME: root
   DIR: /home/vt2412
   GIT_BRANCH: origin/main
-  TELEGA_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+#  TELEGA_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
 #  token: ${{ secrets.TELEGRAM_TOKEN }}
-  DEPLOY_KEY:  ${{ secrets.DEPLOY_KEY }}
+#  DEPLOY_KEY:  ${{ secrets.DEPLOY_KEY }}
 
 on:
   push:
@@ -28,7 +28,7 @@ jobs:
         with:
           host: ${{ env.VPS_IP }}
           username: ${{ env.VPS_USERNAME }}
-          key: ${{ env.DEPLOY_KEY }}
+          key: ${{ secrets.DEPLOY_KEY }}
           script: |
                     git fetch --all
                     git reset --hard ${{ env.GIT_BRANCH }}
@@ -59,7 +59,7 @@ jobs:
         with:
           host: ${{ env.VPS_IP }}
           username: ${{ env.VPS_USERNAME }}
-          key: ${{ env.DEPLOY_KEY }}
+          key: ${{ secrets.DEPLOY_KEY }}
 
           script: |
 #            /usr/local/php/cgi/8.2/bin/php composer.phar i --no-dev
@@ -81,7 +81,7 @@ jobs:
 
           host: ${{ env.VPS_IP }}
           username: ${{ env.VPS_USERNAME }}
-          key: ${{ env.DEPLOY_KEY }}
+          key: ${{ secrets.DEPLOY_KEY }}
 
           script: |
             php artisan migrate:fresh --seed
@@ -101,7 +101,7 @@ jobs:
 
           host: ${{ env.VPS_IP }}
           username: ${{ env.VPS_USERNAME }}
-          key: ${{ env.DEPLOY_KEY }}
+          key: ${{ secrets.DEPLOY_KEY }}
 
           script: |
             npm i
@@ -117,7 +117,7 @@ jobs:
         with:
           # to: ${{ secrets.TELEGRAM_TO }}
           to: 360209578, phpcat,
-          token: ${{ env.TELEGA_TOKEN }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
             🐥🐥🐥 ${{ github.repository }}
             ${{ github.event_name }} > ${{ github.event.head_commit.message }}
@@ -134,7 +134,7 @@ jobs:
         with:
           # to: ${{ secrets.TELEGRAM_TO }}
           to: 360209578, phpcat,
-          token: ${{ env.TELEGA_TOKEN }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
             🍀🍀🍀 ${{ github.repository }}
             ${{ github.event_name }} > ${{ github.event.head_commit.message }}
@@ -150,7 +150,7 @@ jobs:
         uses: appleboy/telegram-action@master
         with:
           to: 360209578, phpcat,
-          token: ${{ env.TELEGA_TOKEN }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
             ❌❌❌ Ошибка в ${{ github.repository }}
             Действие: ${{ github.event_name }} > ${{ github.event.head_commit.message }}
