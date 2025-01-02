@@ -69,14 +69,8 @@ jobs:
           host: ${{ env.VPS_IP }}
           username: ${{ env.VPS_USERNAME }}
           key: ${{ secrets.DEPLOY_KEY }}
-
           script: |
-#            cd ${{ env.DIR }}
             docker exec vt2 php artisan migrate:fresh --seed
-
-          #            cd ${{ env.DIR }}
-          #            /usr/local/php/cgi/8.2/bin/php composer.phar i --no-dev
-
 
   deploy_npm:
     runs-on: ubuntu-latest
