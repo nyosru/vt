@@ -57,6 +57,7 @@ jobs:
           username: ${{ env.VPS_USERNAME }}
           key: ${{ secrets.DEPLOY_KEY }}
           script: |
+            cd ${{ env.DIR }}
             composer i
 
   deploy_composer_db:
@@ -70,6 +71,7 @@ jobs:
           key: ${{ secrets.DEPLOY_KEY }}
 
           script: |
+            cd ${{ env.DIR }}
             php artisan migrate:fresh --seed
 
           #            cd ${{ env.DIR }}
@@ -89,6 +91,7 @@ jobs:
           key: ${{ secrets.DEPLOY_KEY }}
 
           script: |
+            cd ${{ env.DIR }}
             npm i
             npm run build
             npx tailwindcss -i ./resources/css/app.css -o ./public/css/output.css
