@@ -57,7 +57,6 @@ jobs:
           username: ${{ env.VPS_USERNAME }}
           key: ${{ secrets.DEPLOY_KEY }}
           script: |
-#            composer i --no-dev
             composer i
 
   deploy_composer_db:
