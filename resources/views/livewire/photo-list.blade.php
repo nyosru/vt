@@ -1,4 +1,24 @@
 <div>
+
+    <header class="bg-white shadow mb-4">
+        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight inline mr-8">
+                Фото
+            </h2>
+
+{{--            <button class="{{ $filterDate == 'old' ? 'bg-blue-400' : 'bg-blue-200' }} p-2"--}}
+{{--                    wire:click.prevent="setFilter('old')">Уже прошли--}}
+{{--            </button>--}}
+{{--            <button class="{{ $filterDate == 'new' ? 'bg-blue-400' : 'bg-blue-200' }} p-2"--}}
+{{--                    wire:click.prevent="setFilter('new')">В будущем--}}
+{{--            </button>--}}
+            {{--            <span class="bg-blue-200 p-2">--}}
+            {{--                $filterDate: {{ $filterDate ?? '-' }}--}}
+            {{--            </span>--}}
+        </div>
+    </header>
+
+
     <div class="mx-auto p-4">
         <!-- Фильтры -->
         <div class="flex justify-between mb-4">

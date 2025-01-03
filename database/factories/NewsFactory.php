@@ -24,12 +24,16 @@ class NewsFactory extends Factory
 	 */
 	public function definition()
 	{
+		$w = rand(200,300);
 		return [
 			'title' => $this->faker->sentence,
 			'description' => $this->faker->paragraph,
 			'content' => '<p>' . implode('</p><p>', $this->faker->paragraphs(10)) . '</p>',
-			'photo' => 'https://picsum.photos/id/' . rand(0, 100) . '/300/200.jpg',
-			'published_at' => now(),
+//			'photo' => 'https://picsum.photos/id/' . rand(0, 100) . '/300/200.jpg',
+//			'photo' => 'https://placekitten.com/240/120',
+//			'photo' => 'https://baconmockup.com/240/120',
+			'photo' => 'https://baconmockup.com/'.$w.'/'.round($w/100*60),
+			'published_at' => date('Y-m-d H:i:s', $_SERVER['REQUEST_TIME']-(rand(1,900)*1000) ),
 		];
 	}
 }

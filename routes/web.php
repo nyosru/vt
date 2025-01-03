@@ -1,26 +1,32 @@
 <?php
 
-use App\Livewire\Events ;
-use App\Livewire\Cabinet ;
+use App\Livewire\Events;
+use App\Livewire\Cabinet;
 use App\Livewire\PhotoList;
 use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'welcome');
 
-
 Route::get('events', Events::class)
-	->middleware(['auth'])
+//	->middleware(['auth'])
 	->name('events');
 Route::get('cabinet', Cabinet::class)
 	->middleware(['auth', 'verified'])
 	->name('cabinet');
 Route::get('/photos', PhotoList::class)
-	->middleware(['auth'])
+//	->middleware(['auth'])
 	->name('photos');
+Route::get('news', \App\Livewire\NewsList::class)
+//	->middleware(['auth'])
+	->name('news');
+
+Route::get('news/{id}', \App\Livewire\NewsSingle::class)
+//	->middleware(['auth'])
+	->name('news.single');
 
 
 Route::view('dashboard', 'dashboard')
-	->middleware(['auth', 'verified'])
+//	->middleware(['auth', 'verified'])
 	->name('dashboard');
 
 Route::view('profile', 'profile')

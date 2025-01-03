@@ -57,4 +57,15 @@ class User extends Authenticatable
 	{
 		return $this->hasMany(Reward::class);
 	}
+
+
+	/**
+	 * Get the photos associated with the user.
+	 *
+	 * @return HasMany
+	 */
+	public function photos(): HasMany
+	{
+		return $this->hasMany(Photo::class);
+	}
 }

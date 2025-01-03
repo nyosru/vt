@@ -24,6 +24,13 @@
         {{ $slot }}
     </main>
 </div>
+<div class="footer1 text-center text-gray-600" >
+<div class="footer2 text-center text-gray-600" >
+<div class="footer3 text-center text-gray-600" >
+    Все права защищены {{ date('Y') }}
+</div>
+</div>
+</div>
 </body>
 {{--@livewireScriptConfig--}}
 </html>

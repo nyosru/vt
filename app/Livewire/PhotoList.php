@@ -39,24 +39,31 @@ class PhotoList extends Component
     /**
      * Рендеринг компонента.
      */
-    public function render()
-    {
-        $query = Photo::query();
+	public function render()
+	{
+		$query = Photo::query();
 
-        if (!empty($this->eventId)) {
-            $query->where('event_id', $this->eventId);
-        }
+		if (!empty($this->eventId)) {
+			$query->where('event_id', $this->eventId);
+		}
 
-        if (!empty($this->userId)) {
-            $query->where('user_id', $this->userId);
-        }
+		if (!empty($this->userId)) {
+			$query->where('user_id', $this->userId);
+		}
 
-        $photos = $query->with(['event', 'user'])->paginate(12);
+		$photos = $query->with(['event', 'user'])->paginate(12);
 
-        return view('livewire.photo-list', [
-            'photos' => $photos,
-            'events' => Event::all(),
-            'users' => User::all(),
-        ]);
-    }
+		// Фильтрация пользователей для выбранного мероприятия
+		$users = !empty($this->eventId)
+			? User::whereHas('photos', function ($query) {
+				$query->where('event_id', $this->eventId);
+			})->orderBy('name', 'asc')->get()
+			: User::orderBy('name', 'asc')->get();
+
+		return view('livewire.photo-list', [
+			'photos' => $photos,
+			'events' => Event::orderBy('name', 'asc')->get(),
+			'users' => $users,
+		]);
+	}
 }
