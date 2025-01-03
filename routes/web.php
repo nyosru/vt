@@ -28,15 +28,19 @@ Route::get('news/{id}', \App\Livewire\NewsSingle::class)
 	->name('news.single');
 
 
-Route::view('dashboard', 'dashboard')
-//	->middleware(['auth', 'verified'])
-	->name('dashboard');
+//Route::view('dashboard', 'dashboard')
+////	->middleware(['auth', 'verified'])
+//	->name('dashboard');
 
 Route::view('profile', 'profile')
 	->middleware(['auth'])
 	->name('profile');
 
 require __DIR__ . '/auth.php';
+
+Route::fallback(function () {
+	return redirect('/');
+});
 
 //
 //use Actions\Logout;
