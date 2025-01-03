@@ -5,7 +5,10 @@ use App\Livewire\Cabinet;
 use App\Livewire\PhotoList;
 use Illuminate\Support\Facades\Route;
 
-Route::view('/', 'welcome');
+//Route::view('/', 'welcome');
+Route::get('/', Events::class)
+//	->middleware(['auth'])
+	->name('events');
 
 Route::get('events', Events::class)
 //	->middleware(['auth'])
